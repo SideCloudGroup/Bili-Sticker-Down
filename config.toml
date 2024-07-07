@@ -1,0 +1,12 @@
+[app]
+super_resolution = true
+suit_id = 114514 # 装扮ID
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+final_resolution = 512 # 设为0则不调整最终分辨率
+
+[realesrgan]
+# https://github.com/xinntao/Real-ESRGAN
+# 需要手动下载可执行文件并配置目录
+executable_file_path = "realesrgan/realesrgan-ncnn-vulkan.exe"
+scale = 4
+model= "realesrgan-x4plus-anime"
