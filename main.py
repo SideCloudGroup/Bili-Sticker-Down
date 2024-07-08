@@ -26,7 +26,16 @@ def get_stickers(session, config):
     if res['data']['suit_items'] is None:
         raise ValueError("装扮不存在")
     stickers = {'name': res['data']['name']}
-    for item in res['data']['suit_items']['emoji_package'][0]['items']:
+    suit_items = res['data']['suit_items']
+    # 普通装扮
+    if 'emoji_package' in suit_items:
+        items = suit_items['emoji_package'][0]['items']
+    # 收藏集DLC
+    elif 'emoji' in suit_items:
+        items = suit_items['emoji']
+    else:
+        raise ValueError("无法找到装扮中的表情包")
+    for item in items:
         stickers[item['name'].split('_')[-1][:-1]] = item['properties']['image']
     return stickers
 
