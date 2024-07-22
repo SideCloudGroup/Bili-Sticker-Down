@@ -40,7 +40,14 @@ def get_stickers(session, config):
     return stickers
 
 
+def convert_to_32bit(image_path, output_path):
+    with Image.open(image_path) as img:
+        img = img.convert("RGBA")
+        img.save(output_path)
+
+
 def process_image(img_path, config, sticker_name, name):
+    convert_to_32bit(img_path, img_path)
     if config['app']['super_resolution']:
         print(f"超分辨率优化 {sticker_name}_{name}.png")
         command = [
